@@ -29,6 +29,8 @@ def validate_images_number(number: str) -> int:
 if __name__ == '__main__':
     env = Env()
     env.read_env()
+    NASA_APOD_API_URL = env('NASA_APOD_API_URL')
+    NASA_API_KEY = env('NASA_API_KEY')
     parser = argparse.ArgumentParser(description='Download nasa apod images')
     parser.add_argument('--number',
                         default=random.randint(30, 50),
@@ -37,11 +39,10 @@ if __name__ == '__main__':
                              'by default random amount from 30 to 50')
     parser.add_argument('--save_dir',
                         default='images',
-                        type=str,
                         help='directory to save images, using "images" if '
-                             'parameter not set')
+                             'argument not set')
     args = parser.parse_args()
-    fetch_random_nasa_apod_images(api_url=env('NASA_APOD_API_URL'),
-                                  api_key=env('NASA_API_KEY'),
+    fetch_random_nasa_apod_images(api_url=NASA_APOD_API_URL,
+                                  api_key=NASA_API_KEY,
                                   save_directory=args.save_dir,
                                   pictures_number=args.number)

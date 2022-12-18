@@ -32,19 +32,21 @@ def fetch_random_nasa_epic_images(api_url: str,
 if __name__ == '__main__':
     env = Env()
     env.read_env()
+    NASA_EPIC_API_URL = env('NASA_EPIC_API_URL')
+    NASA_API_KEY = env('NASA_API_KEY')
     parser = argparse.ArgumentParser(description='Download nasa apod images')
     parser.add_argument('--number',
                         default=random.randint(5, 10),
                         choices=range(1, 11),
+                        type=int,
                         help='number of pictures between 1 and 10 to '
                              'download, by default random amount from 5 to 10')
     parser.add_argument('--save_dir',
                         default='images',
-                        type=str,
                         help='directory to save images, using "images" if '
-                             'parameter not set')
+                             'argument not set')
     args = parser.parse_args()
-    fetch_random_nasa_epic_images(api_url=env('NASA_EPIC_API_URL'),
-                                  api_key=env('NASA_API_KEY'),
+    fetch_random_nasa_epic_images(api_url=NASA_EPIC_API_URL,
+                                  api_key=NASA_API_KEY,
                                   save_directory=args.save_dir,
                                   pictures_number=args.number)

@@ -21,20 +21,19 @@ def fetch_spacex_launch(api_url: str,
 if __name__ == '__main__':
     env = Env()
     env.read_env()
+    SPACEX_API_URL = env('SPACEX_API_URL')
     parser = argparse.ArgumentParser(description='Download spacex launch '
                                                  'photos to specific '
                                                  'directory.')
     parser.add_argument('--launch_id',
                         default='latest',
-                        type=str,
-                        help='launch id, download latest if parameter '
-                             'not set')
+                        help='launch id, download photos from latest launch '
+                        'if argument not set')
     parser.add_argument('--save_dir',
                         default='images',
-                        type=str,
                         help='directory to save images, using "images" if '
-                             'parameter not set')
+                             'argument not set')
     args = parser.parse_args()
-    fetch_spacex_launch(api_url=env('SPACEX_API_URL'),
+    fetch_spacex_launch(api_url=SPACEX_API_URL,
                         save_directory=args.save_dir,
                         launch_id=args.launch_id)
