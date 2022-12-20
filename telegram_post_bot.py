@@ -26,7 +26,7 @@ if __name__ == '__main__':
     env.read_env()
     TG_BOT_KEY = env('TG_BOT_KEY')
     TG_GROUP_ID = env('TG_GROUP_ID')
-    DEFAULT_IMAGES_PATH = pathlib.Path(env('DEFAULT_IMAGES_PATH'))
+    DEFAULT_IMAGES_PATH = pathlib.Path(env('DEFAULT_IMAGES_PATH', 'images'))
     parser = argparse.ArgumentParser(description='Post images to telegram '
                                                  'group.')
     parser.add_argument('--image_path',

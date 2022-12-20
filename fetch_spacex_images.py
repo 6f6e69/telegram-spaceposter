@@ -21,7 +21,8 @@ def fetch_spacex_launch(api_url: str,
 if __name__ == '__main__':
     env = Env()
     env.read_env()
-    SPACEX_API_URL = env('SPACEX_API_URL')
+    SPACEX_API_URL = env('SPACEX_API_URL',
+                         'https://api.spacexdata.com/v5/launches/')
     parser = argparse.ArgumentParser(description='Download spacex launch '
                                                  'photos to specific '
                                                  'directory.')

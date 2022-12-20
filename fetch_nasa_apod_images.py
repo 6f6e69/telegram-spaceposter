@@ -29,7 +29,8 @@ def validate_images_number(number: str) -> int:
 if __name__ == '__main__':
     env = Env()
     env.read_env()
-    NASA_APOD_API_URL = env('NASA_APOD_API_URL')
+    NASA_APOD_API_URL = env('NASA_APOD_API_URL',
+                            'https://api.nasa.gov/planetary/apod')
     NASA_API_KEY = env('NASA_API_KEY')
     parser = argparse.ArgumentParser(description='Download nasa apod images')
     parser.add_argument('--number',

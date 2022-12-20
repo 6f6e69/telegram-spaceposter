@@ -32,7 +32,7 @@ def fetch_random_nasa_epic_images(api_url: str,
 if __name__ == '__main__':
     env = Env()
     env.read_env()
-    NASA_EPIC_API_URL = env('NASA_EPIC_API_URL')
+    NASA_EPIC_API_URL = env('NASA_EPIC_API_URL', 'https://api.nasa.gov/EPIC/')
     NASA_API_KEY = env('NASA_API_KEY')
     parser = argparse.ArgumentParser(description='Download nasa apod images')
     parser.add_argument('--number',
