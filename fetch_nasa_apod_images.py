@@ -5,15 +5,14 @@ import argparse
 import random
 
 
-def fetch_random_nasa_apod_images(api_url: str,
-                                  api_key: str,
+def fetch_random_nasa_apod_images(api_key: str,
                                   save_directory: str,
                                   pictures_number: int) -> None:
     payload = {
         'count': pictures_number,
         'api_key': api_key,
     }
-    with requests.get(api_url, params=payload) as response:
+    with requests.get(NASA_APOD_API_URL, params=payload) as response:
         response.raise_for_status()
         images_urls = [image['url'] for image in response.json()]
     download_images(images_urls, save_directory, 'nasa_apod')
@@ -43,7 +42,6 @@ if __name__ == '__main__':
                         help='directory to save images, using "images" if '
                              'argument not set')
     args = parser.parse_args()
-    fetch_random_nasa_apod_images(api_url=NASA_APOD_API_URL,
-                                  api_key=NASA_API_KEY,
+    fetch_random_nasa_apod_images(api_key=NASA_API_KEY,
                                   save_directory=args.save_dir,
                                   pictures_number=args.number)

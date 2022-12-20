@@ -7,14 +7,13 @@ import random
 from datetime import datetime
 
 
-def fetch_random_nasa_epic_images(api_url: str,
-                                  api_key: str,
+def fetch_random_nasa_epic_images(api_key: str,
                                   save_directory: str,
                                   pictures_number: int) -> None:
     payload = {
         'api_key': api_key,
     }
-    images_list_url = urllib.parse.urljoin(api_url, 'api/natural')
+    images_list_url = urllib.parse.urljoin(NASA_EPIC_API_URL, 'api/natural')
     with requests.get(images_list_url, params=payload) as response:
         response.raise_for_status()
         images = response.json()
@@ -24,7 +23,8 @@ def fetch_random_nasa_epic_images(api_url: str,
         date = datetime.fromisoformat(image['date'])
         formatted_date = date.strftime('%Y/%m/%d')
         name = image['image']
-        image_url = f'{api_url}archive/natural/{formatted_date}/png/{name}.png'
+        image_url = (f'{NASA_EPIC_API_URL}archive/natural/'
+                     f'{formatted_date}/png/{name}.png')
         images_urls.append(image_url)
     download_images(images_urls, save_directory, 'nasa_epic', api_key)
 
@@ -46,7 +46,6 @@ if __name__ == '__main__':
                         help='directory to save images, using "images" if '
                              'argument not set')
     args = parser.parse_args()
-    fetch_random_nasa_epic_images(api_url=NASA_EPIC_API_URL,
-                                  api_key=NASA_API_KEY,
+    fetch_random_nasa_epic_images(api_key=NASA_API_KEY,
                                   save_directory=args.save_dir,
                                   pictures_number=args.number)
