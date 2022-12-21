@@ -3,6 +3,7 @@ import telegram
 import pathlib
 import random
 import argparse
+from upload_checker import allowed_upload_size
 
 
 def get_random_image_path(path: pathlib.Path) -> pathlib.Path:
@@ -15,8 +16,8 @@ def validate_filepath(filepath: str) -> pathlib.Path:
     if not filepath.is_file():
         print(f"Image file {filepath} doesn't exists!")
         raise argparse.ArgumentError
-    if filepath.stat().st_size > (1024 * 1024 * 20):
-        print('Allowed files less than 20Mb.')
+    if not allowed_upload_size(filepath, MAX_UPLOAD_IMAGE_SIZE):
+        print(f'Allowed files less than {MAX_UPLOAD_IMAGE_SIZE}Mb.')
         raise argparse.ArgumentError
     return filepath
 
@@ -27,6 +28,7 @@ if __name__ == '__main__':
     TG_BOT_KEY = env('TG_BOT_KEY')
     TG_GROUP_ID = env('TG_GROUP_ID')
     DEFAULT_IMAGES_PATH = pathlib.Path(env('DEFAULT_IMAGES_PATH', 'images'))
+    MAX_UPLOAD_IMAGE_SIZE = env('MAX_UPLOAD_IMAGE_SIZE', 20)
     parser = argparse.ArgumentParser(description='Post images to telegram '
                                                  'group.')
     parser.add_argument('--image_path',
