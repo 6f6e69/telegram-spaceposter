@@ -39,5 +39,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
     bot = telegram.Bot(token=TG_BOT_KEY)
     with args.image_path.open('rb') as photo:
-        bot.send_photo(chat_id=TG_GROUP_ID,
-                       photo=photo)
+        try:
+            bot.send_photo(chat_id=TG_GROUP_ID,
+                           photo=photo)
+        except telegram.error.NetworkError:
+            print('Network error, check internet connection!')
+            exit(1)
