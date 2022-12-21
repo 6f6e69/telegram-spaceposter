@@ -14,7 +14,8 @@ def fetch_random_nasa_apod_images(api_key: str,
     }
     with requests.get(NASA_APOD_API_URL, params=payload) as response:
         response.raise_for_status()
-        images_urls = [image['url'] for image in response.json()]
+        images_urls = [image['url'] for image in response.json() 
+                       if image['media_type'] == 'image']
     download_images(images_urls, save_directory, 'nasa_apod')
 
 
