@@ -36,5 +36,6 @@ if __name__ == '__main__':
                              'random image')
     args = parser.parse_args()
     bot = telegram.Bot(token=TG_BOT_KEY)
-    bot.send_photo(chat_id=TG_GROUP_ID,
-                   photo=args.image_path.open('rb'))
+    with args.image_path.open('rb') as photo:
+        bot.send_photo(chat_id=TG_GROUP_ID,
+                       photo=photo)
