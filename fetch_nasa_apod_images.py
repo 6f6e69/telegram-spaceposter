@@ -42,5 +42,6 @@ if __name__ == '__main__':
                         help='directory to save images, using "images" if '
                              'argument not set')
     args = parser.parse_args()
-    fetch_random_nasa_apod_images(save_directory=args.save_dir,
+    fetch_random_nasa_apod_images(api_key=NASA_API_KEY,
+                                  save_directory=args.save_dir,
                                   pictures_number=args.number)

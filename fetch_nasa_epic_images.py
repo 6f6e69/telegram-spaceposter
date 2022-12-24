@@ -27,7 +27,7 @@ def fetch_random_nasa_epic_images(api_key: str,
         image_url = (f'{NASA_EPIC_API_URL}archive/natural/'
                      f'{formatted_date}/png/{name}.png')
         images_urls.append(image_url)
-    download_images(images_urls, save_directory, 'nasa_epic', api_key)
+    download_images(images_urls, save_directory, 'nasa_epic', payload)
 
 
 if __name__ == '__main__':
