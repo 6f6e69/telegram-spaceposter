@@ -15,7 +15,7 @@ Earth Polychromatic Imaging Camera.
 - **telegram_post_bot.py** - публикует изображение в telegram-канал.
 
 - **telegram_autopost_bot.py** - бесконечно публикует в случайном порядке изображения
-из папки в telegram-канал с заданной переодичностью.
+из папки в telegram-канал с заданной периодичностью.
 
 ## Как установить
 
@@ -33,7 +33,7 @@ source env/bin/activate # Unix-based
 ```
 Скачайте [архив](https://github.com/6f6e69/telegram-spaceposter/archive/refs/heads/main.zip) с файлами проекта и разархивируйте в рабочую директорию.
 
-Используйте `pip` (или `pip3`, есть есть конфликт с Python2) для установки зависимостей:
+Используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
 ```
 pip install -r requirements.txt
 ```
@@ -150,7 +150,7 @@ python3 telegram_post_bot.py --image_path nasa_apod/picture1.jpg
 ```sh
 python3 telegram_post_bot.py
 ```
-Папку по умолчанию, группу куда производится публикация и временной промежуток мужду постами можно изменить в
+Папку по умолчанию, группу куда производится публикация и временной промежуток между постами можно изменить в
 [переменных окружения](#переменные-окружения-telegram_post_botpy) `TG_GROUP_ID`, `DEFAULT_IMAGES_PATH` и
 `PUBLICATION_DELAY`.
 
