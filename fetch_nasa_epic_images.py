@@ -10,6 +10,7 @@ from datetime import datetime
 def fetch_random_nasa_epic_images(api_key: str,
                                   save_directory: str,
                                   pictures_number: int) -> None:
+    NASA_EPIC_API_URL = 'https://api.nasa.gov/EPIC/'
     payload = {
         'api_key': api_key,
     }
@@ -32,7 +33,6 @@ def fetch_random_nasa_epic_images(api_key: str,
 if __name__ == '__main__':
     env = Env()
     env.read_env()
-    NASA_EPIC_API_URL = env('NASA_EPIC_API_URL', 'https://api.nasa.gov/EPIC/')
     NASA_API_KEY = env('NASA_API_KEY')
     parser = argparse.ArgumentParser(description='Download nasa apod images')
     parser.add_argument('--number',
